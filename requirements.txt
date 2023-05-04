@@ -142,7 +142,6 @@ python-dotenv==1.0.0
 python-speech-features==0.6
 pytweening==1.0.4
 pytz==2022.4
-pypiwin32==223
 pywin32-ctypes==0.2.0
 pywinauto==0.6.8
 PyYAML==6.0
