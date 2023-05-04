@@ -1,6 +1,4 @@
-import pyaudio
 import os
-import wave
 import librosa
 import numpy as np
 from sys import byteorder
@@ -107,7 +105,7 @@ def mains(files):
 
 THRESHOLD = 500
 CHUNK_SIZE = 1024
-FORMAT = pyaudio.paInt16
+#FORMAT = pyaudio.paInt16
 RATE = 16000
 
 SILENCE = 30
@@ -194,7 +192,7 @@ def create_model(vector_length=128):
     model.summary()
     return model
 
-def is_silent(snd_data):
+"""def is_silent(snd_data):
     "Returns 'True' if below the 'silent' threshold"
     return max(snd_data) < THRESHOLD
 
@@ -236,10 +234,10 @@ def add_silence(snd_data, seconds):
     r = array('h', [0 for i in range(int(seconds*RATE))])
     r.extend(snd_data)
     r.extend([0 for i in range(int(seconds*RATE))])
-    return r
+    return r"""
 
-def record():
-    """
+#def record():
+"""
     Record a word or words from the microphone and 
     return the data as an array of signed shorts.
     Normalizes the audio, trims silence from the 
@@ -247,7 +245,7 @@ def record():
     blank sound to make sure VLC et al can play 
     it without getting chopped off.
     """
-    p = pyaudio.PyAudio()
+"""p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT, channels=1, rate=RATE,
         input=True, output=True,
         frames_per_buffer=CHUNK_SIZE)
@@ -282,9 +280,9 @@ def record():
     r = normalize(r)
     r = trim(r)
     r = add_silence(r, 0.5)
-    return sample_width, r
+    return sample_width, r"""
 
-def record_to_file(path):
+"""def record_to_file(path):
     "Records from the microphone and outputs the resulting data to 'path'"
     sample_width, data = record()
     data = pack('<' + ('h'*len(data)), *data)
@@ -294,7 +292,7 @@ def record_to_file(path):
     wf.setsampwidth(sample_width)
     wf.setframerate(RATE)
     wf.writeframes(data)
-    wf.close()
+    wf.close()"""
 
 
 
